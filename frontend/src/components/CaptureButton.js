@@ -49,7 +49,8 @@ import React from 'react';
 import axios from 'axios';
 
 const CaptureButton = ({ mapRef, setCapturedImage }) => {
-  const apiKey = 'dd7c10c6f5814de2ba305d22f701d035'; // Add your Maps API Key here
+  const token = localStorage.getItem('token');
+  const apiKey = 'dd7c10c6f5814de2ba305d22f701d035'; //geoapify key
 
   const getStaticMapImageUrl = (latitude, longitude, zoom, apiKey) => {
     return `https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=600&height=400&center=lonlat:${longitude},${latitude}&zoom=${zoom}&apiKey=${apiKey}`;
@@ -79,6 +80,10 @@ const CaptureButton = ({ mapRef, setCapturedImage }) => {
           longitude: center.lng,
           zoom: zoom,
           mapImage: staticMapUrl
+        }, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         });
         console.log('Capture successful:', response.data);
       } catch (error) {

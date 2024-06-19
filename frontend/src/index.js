@@ -1,22 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
+//import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const clerkFrontendApi = 'pk_test_ZW1lcmdpbmctdGFycG9uLTUuY2xlcmsuYWNjb3VudHMuZGV2JA';
+//const clerkFrontendApi = 'pk_test_ZW1lcmdpbmctdGFycG9uLTUuY2xlcmsuYWNjb3VudHMuZGV2JA';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ClerkProvider publishableKey={clerkFrontendApi}>
+    {/* <ClerkProvider publishableKey={clerkFrontendApi}>
     <SignedIn>
       <App />
     </SignedIn>
     <SignedOut>
       <RedirectToSignIn />
     </SignedOut>
-  </ClerkProvider>
+  </ClerkProvider> */}
+    <App />
   </React.StrictMode>
 );
 
