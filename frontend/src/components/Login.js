@@ -16,17 +16,29 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <div>
-        <label>Username:</label>
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+    // <form onSubmit={handleSubmit}>
+    //   <h2>Login</h2>
+    //   <div>
+    //     <label>Username:</label>
+    //     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+    //   </div>
+    //   <div>
+    //     <label>Password:</label>
+    //     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+    //   </div>
+    //   <button type="submit">Login</button>
+    // </form>
+    <form onSubmit={handleSubmit} className="mb-4">
+      <h2 className="mb-3">Login</h2>
+      <div className="mb-3">
+        <label className="form-label">Username:</label>
+        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" required />
       </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+      <div className="mb-3">
+        <label className="form-label">Password:</label>
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" required />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit" className="btn btn-primary">Login</button>
     </form>
   );
 };

@@ -1,49 +1,3 @@
-// import React from 'react';
-// import html2canvas from 'html2canvas';
-// import axios from 'axios';
-
-// const CaptureButton = ({ mapRef, setCapturedImage }) => {
-//   const captureMap = async () => {
-//     console.log('Capture button clicked');
-//     console.log('Map reference:', mapRef.current);
-
-//     if (mapRef.current) {
-//       const mapDiv = mapRef.current.getDiv();
-//       const canvas = await html2canvas(mapDiv);
-//       //const image = canvas.toDataURL('image/png');
-//       const image = canvas.toDataURL('image/png').split(',')[1]; // Get base64 string
-//       setCapturedImage(image);
-
-//       const [latitude, longitude] = [
-//         mapRef.current.getCenter().lat(),
-//         mapRef.current.getCenter().lng()
-//       ];
-//       const zoom = mapRef.current.getZoom();
-
-//       try {
-//         console.log('Sending POST request to /api/capture');
-//         const response = await axios.post('http://localhost:5000/api/capture', {
-//           latitude,
-//           longitude,
-//           zoom,
-//           //mapImage: image.split(',')[1] // Send the base64 
-//           mapimage: image
-//         });
-//         console.log('Capture successful:', response.data);
-//       } catch (error) {
-//         console.error('Error capturing map:', error);
-//       }
-//     } else {
-//       console.error('Map reference is null');
-//     }
-//   };
-
-//   return (
-//     <button onClick={captureMap}>Capture Map</button>
-//   );
-// };
-
-// export default CaptureButton;
 
 import React from 'react';
 import axios from 'axios';
@@ -92,7 +46,7 @@ const CaptureButton = ({ mapRef, setCapturedImage }) => {
   };
 
   return (
-    <button onClick={captureMap}>Capture Map</button>
+    <button onClick={captureMap} className="btn btn-primary">Capture Map</button>
   );
 };
 
