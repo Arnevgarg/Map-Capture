@@ -63,10 +63,7 @@ const CaptureButton = ({ mapRef, setCapturedImage }) => {
     console.log('Map reference:', mapRef.current);
 
     if (mapRef.current) {
-      // const [latitude, longitude] = [
-      //   mapRef.current.getCenter().lat(),
-      //   mapRef.current.getCenter().lng()
-      // ];
+
       const center = mapRef.current.getCenter();
       const zoom = mapRef.current.getZoom();
 

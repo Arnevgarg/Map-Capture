@@ -29,5 +29,5 @@ app.listen(port, () => {
 });
 
 app.get("/", (req,res) => {
-  res.jspn("Hello");
+  res.json("Hello");
 })
