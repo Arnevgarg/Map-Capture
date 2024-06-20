@@ -10,7 +10,13 @@ const app = express();
 const port = 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://map-capture-ivory.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true
+  }
+));
 app.use(bodyParser.json());
 
 // Routes
