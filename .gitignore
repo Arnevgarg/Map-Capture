@@ -19,6 +19,8 @@ node_modules
 /frontend/.env.development.local
 /frontend/.env.test.local
 /frontend/.env.production.local
+/frontend/.env
+/backend/.env
 
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*

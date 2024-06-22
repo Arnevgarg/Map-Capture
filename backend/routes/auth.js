@@ -2,9 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models/User');
-
 const router = express.Router();
-const JWT_SECRET = 'your_jwt_secret'; // Use a secure key in production
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Register a new user
 router.post('/register', async (req, res) => {

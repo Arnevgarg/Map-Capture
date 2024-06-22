@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -7,7 +10,7 @@ const { redisClient, cacheMiddleware } = require('./cache');
 const { authRouter, authMiddleware } = require('./routes/auth');
 
 const app = express();
-const port = 5000;
+const port = process.env.port;
 
 // Middleware
 app.use(cors());
@@ -31,3 +34,8 @@ app.listen(port, () => {
 // app.get("/", (req,res) => {
 //   res.json("Hello");
 // })
+// redisClient.connect().then(() => {
+//   console.log('Redis client connected');
+// }).catch((err) => {
+//   console.error('Redis client connection error', err);
+// });

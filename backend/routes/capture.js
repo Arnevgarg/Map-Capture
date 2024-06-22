@@ -30,7 +30,10 @@ router.post('/', async (req, res) => {
       await redisClient.del('/api/capture/frequent');
     }
     console.log('Capture saved successfully');
-    res.status(201).json({ message: 'Capture saved successfully' });
+    res.status(201).json({ 
+      message: 'Capture saved successfully',
+      data: newCapture
+     });
   } catch (error) {
     console.error('Error saving capture:', error);
     res.status(500).json({ message: 'Error saving capture', error });
@@ -40,13 +43,25 @@ router.post('/', async (req, res) => {
 
 //GET /api/capture endpoint for Retrieving Saved Data from MongoDB
 router.get('/', cacheMiddleware, async (req, res) => {
+  
   try {
-    const captures = await Capture.find();
+    console.log('Received GET request to /api/capture');
+
+    const cachedData = await redisClient.get('capturedMaps');
+    if (cachedData) {
+      return res.status(200).json(JSON.parse(cachedData));
+    }
+
+    const captures = await Capture.find().sort({ createdAt: -1 });
+  
+    //const captures = await Capture.find();
     if (redisClient.isOpen) {
       await redisClient.setEx(req.originalUrl, 3600, JSON.stringify(captures));
     }
+    console.log('Serving data from MongoDB');
     res.status(200).json(captures);
   } catch (error) {
+    console.error('Error fetching captures:', error);
     res.status(500).json({ message: 'Error fetching captures', error });
   }
 });

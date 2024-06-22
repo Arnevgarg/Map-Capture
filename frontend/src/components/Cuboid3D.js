@@ -12,19 +12,18 @@ const Cuboid3D = ({ capturedImage }) => {
 
       camera.attachControl(canvas, true);
     
-      const light = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 0), scene);
+      const light = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 10, 0), scene);
       var light2 = new BABYLON.PointLight(
         "light2",
-        new BABYLON.Vector3(0, 10, 0),
+        new BABYLON.Vector3(0, -10, 0),
         scene
       );
-      
+      scene.clearColor = new BABYLON.Color3(0, 0, 0);
+
       const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
 
       if (capturedImage) {
         const material = new BABYLON.StandardMaterial("boxMaterial", scene);
-        //material.diffuseTexture = new BABYLON.Texture(capturedImage, scene);
-        //const texture = new BABYLON.Texture(`data:image/png;base64,${capturedImage}`, scene);
         const texture = new BABYLON.Texture(capturedImage, scene);
         material.diffuseTexture = texture;
         box.material = material;

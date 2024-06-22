@@ -1,7 +1,8 @@
-const redis = require('redis');
-const redisClient = redis.createClient({
-    url: 'redis://default:OkJ3clIXP9ZD8m0XF6wEOvHY03QoXKjk@redis-13534.c301.ap-south-1-1.ec2.redns.redis-cloud.com:13534',
-  });
+const { createClient } = require('redis');
+
+const redisClient = createClient({
+  url: process.env.REDIS_URL,
+});
 
 redisClient.on('error', (err) => {
   console.error('Redis client error:', err);
@@ -9,21 +10,28 @@ redisClient.on('error', (err) => {
 
 redisClient.connect().catch(console.error);
 
-const cacheMiddleware = (req, res, next) => {
+const cacheMiddleware = async (req, res, next) => {
   const key = req.originalUrl;
-  redisClient.get(key, (err, data) => {
-    if (err) throw err;
+
+  try {
+    const data = await redisClient.get(key);
     if (data !== null) {
+      console.log('Serving from cache');
       res.status(200).json(JSON.parse(data));
     } else {
       res.sendResponse = res.send;
       res.send = (body) => {
-        redisClient.setEx(key, 3600, JSON.stringify(body));
+        redisClient.setEx(key, 3600, JSON.stringify(body)).catch((err) => {
+          console.error('Redis setEx error:', err);
+        });
         res.sendResponse(body);
       };
       next();
     }
-  });
+  } catch (err) {
+    console.error('Redis get error:', err);
+    next();
+  }
 };
 
 module.exports = { redisClient, cacheMiddleware };

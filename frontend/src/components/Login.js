@@ -8,7 +8,7 @@ const Login = ({ setToken }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, { username, password });
       setToken(response.data.token);
     } catch (error) {
       console.error('Error logging in:', error);
@@ -16,18 +16,6 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    // <form onSubmit={handleSubmit}>
-    //   <h2>Login</h2>
-    //   <div>
-    //     <label>Username:</label>
-    //     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
-    //   </div>
-    //   <div>
-    //     <label>Password:</label>
-    //     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-    //   </div>
-    //   <button type="submit">Login</button>
-    // </form>
     <form onSubmit={handleSubmit} className="mb-4">
       <h2 className="mb-3">Login</h2>
       <div className="mb-3">
