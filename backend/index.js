@@ -15,7 +15,7 @@ const port = process.env.port;
 // Middleware
 app.use(cors(
   {
-    origin: ["https://map-capture-eight.vercel.app"],
+    origin: ["https://map-capture-app.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true
   }
