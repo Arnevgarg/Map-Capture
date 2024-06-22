@@ -21,7 +21,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/capture', authMiddleware, captureRouter);
 
 // MongoDB connection
-const mongoURI = process.env.MONGO_URI || 'mongodb+srv://gargarnev:ishangarg@map-capture-app.lq3qlud.mongodb.net/?retryWrites=true&w=majority&appName=map-capture-app';
+const mongoURI = process.env.MONGO_URI
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.error('MongoDB connection error:', err));
