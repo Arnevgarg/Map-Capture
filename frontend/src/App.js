@@ -24,14 +24,6 @@ function App() {
 
   if (!token) {
     return (
-      // <div className="App">
-      //   <h1>Map Capture App</h1>
-      //   <Login setToken={(token) => {
-      //     setToken(token);
-      //     localStorage.setItem('token', token);
-      //   }} />
-      //   <Register />
-      // </div>
       <div className="App container mt-5">
       <h1 className="mb-4">Map Capture App</h1>
       <div className="row">
