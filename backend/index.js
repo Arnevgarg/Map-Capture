@@ -13,7 +13,13 @@ const app = express();
 const port = process.env.port;
 
 // Middleware
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://map-capture-eight.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true
+  }
+));
 app.use(bodyParser.json());
 
 // Routes
