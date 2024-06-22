@@ -1,0 +1,73 @@
+# Map Capture Application Documentation
+
+## Overview
+
+This project is a MERN stack application that allows users to select a location on a map, capture the visible region as an image, and apply the captured image as a texture to a 3D cuboid using BabylonJS. The application also includes user authentication and authorization using JWT and saves the captured images and map data to a MongoDB database. Additionally, it implements caching for frequently accessed data to improve performance.
+
+## Frontend
+
+### Build a ReactJS application that allows users to choose a location on a map (use Google Maps or Mapbox).
+
+- **Leaflet and Geoapify**: Used Leaflet to display an interactive map with Geoapify tiles. The map allows users to select a location interactively.
+
+### Display the region visible on the map.
+
+- **Visible Region**: The selected region on the map is displayed using Leaflet, which automatically shows the visible region based on user interactions like panning and zooming.
+
+### Add a button that, when clicked, captures the visible region on the map as an image.
+
+- **Capture Button**: Implemented a button that, when clicked, captures the current visible region of the map as an image using the Geoapify Static Maps API.
+
+### Apply the captured image as a material (texture) to a 3D cuboid using BabylonJS.
+
+- **3D Cuboid**: Applied the captured image as a texture to a 3D cuboid using BabylonJS, rendering the image on the cuboid's surface.
+
+### Ensure the UI is responsive and user-friendly.
+
+- **Responsive UI**: Ensured the user interface is responsive by using CSS flexbox and media queries, providing a consistent experience across different devices and screen sizes.
+
+## Backend
+
+### Set up a Node.js server using Express.js.
+
+- **Express.js Server**: Set up a Node.js server using Express.js to handle API requests and serve the backend logic.
+
+### Create an endpoint to save the captured image and map data to a MongoDB database.
+
+- **Save Captured Data**: Created an endpoint to save the captured image and associated map data (latitude, longitude, zoom level) to a MongoDB database.
+
+### Create an endpoint to retrieve and display the saved map data and images.
+
+- **Retrieve Data**: Created an endpoint to retrieve and display the saved map data and images, allowing users to view previously captured regions.
+
+### Create a workflow that lets you save the state and reload the state.
+
+- **State Management**: Implemented a workflow that saves the application state to the database and allows reloading the state, ensuring persistence across sessions.
+
+### Implement proper error handling and validation for the endpoints.
+
+- **Error Handling**: Added proper error handling and validation for all endpoints to ensure robustness and reliability. This includes checking for missing data, invalid inputs, and server errors.
+
+### Create an endpoint that processes the map data to identify and return the top three most frequently captured regions. Implement an efficient algorithm to handle large datasets.
+
+- **Top Captured Regions**: Created an endpoint that processes the map data to identify and return the top three most frequently captured regions. Used MongoDB aggregation to efficiently handle large datasets.
+
+### Design and implement a caching mechanism to improve the performance of frequently accessed map data. Explain your choice of caching strategy in the documentation.
+
+- **Caching with Redis**: Designed and implemented a caching mechanism using Redis to improve the performance of frequently accessed map data. This reduces the load on the database and speeds up data retrieval. Redis was chosen for its speed and efficiency as an in-memory data store.
+
+## Database
+
+### Use MongoDB to store the captured images and related map data.
+
+- **MongoDB**: Used MongoDB to store the captured images and related map data, leveraging its flexible schema and scalability.
+
+### Design the schema to efficiently store and retrieve the map data and images.
+
+- **Schema Design**: Designed the MongoDB schema to efficiently store and retrieve map data and images. This includes indexing frequently queried fields to optimize read performance.
+
+## Extra Credit
+
+### Implement user authentication and authorization (e.g., using JWT).
+
+- **User Authentication**: Implemented user authentication and authorization using JSON Web Tokens (JWT). This includes user registration, login, and protected routes to ensure that only authenticated users can access certain endpoints.
