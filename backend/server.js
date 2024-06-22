@@ -20,6 +20,11 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRouter);
 app.use('/api/capture', authMiddleware, captureRouter);
 
+// Test route
+app.get('/', (req, res) => {
+  res.send('Map Capture Backend is running!');
+});
+
 // MongoDB connection
 const mongoURI = process.env.MONGO_URI
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
